@@ -15,4 +15,4 @@ import "./adv/detectCrossbowHit.js";
 import "./adv/detectItems.js";
 import "./adv/detectKilled.js";
 import "./adv/detectRide.js";
-import "./adv/detectTamed.js";
+// import "./adv/detectTamed.js";

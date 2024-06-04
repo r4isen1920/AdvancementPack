@@ -25,11 +25,11 @@ system.runInterval(() => {
     let pyramidBlocksUsed = 0;
     pyramidBlocksVolume.forEach((block) => {
       if (
-        block.typeId != 'minecraft:iron_block' &&
-        block.typeId != 'minecraft:gold_block' &&
-        block.typeId != 'minecraft:emerald_block' &&
-        block.typeId != 'minecraft:diamond_block' &&
-        block.typeId != 'minecraft:netherite_block'
+        block.getItemStack()?.typeId != 'minecraft:iron_block' &&
+        block.getItemStack()?.typeId != 'minecraft:gold_block' &&
+        block.getItemStack()?.typeId != 'minecraft:emerald_block' &&
+        block.getItemStack()?.typeId != 'minecraft:diamond_block' &&
+        block.getItemStack()?.typeId != 'minecraft:netherite_block'
       ) return;
 
       pyramidBlocksUsed += 1;

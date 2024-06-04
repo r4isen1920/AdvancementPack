@@ -9,7 +9,7 @@ world.afterEvents.projectileHitBlock.subscribe((e) => {
   const blockHit = e.getBlockHit();
 
   try {
-    if (blockHit.block.typeId != 'minecraft:target' || source?.typeId != 'minecraft:player' || source?.hasTag('adv39')) return;
+    if (blockHit.block.getItemStack()?.typeId != 'minecraft:target' || source?.typeId != 'minecraft:player' || source?.hasTag('adv39')) return;
   } catch { return };
 
   const blockF = blockHit.faceLocation;

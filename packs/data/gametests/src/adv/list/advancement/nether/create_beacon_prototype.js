@@ -8,7 +8,7 @@ import { detectBlocks } from "../../../detectBlocks";
 world.afterEvents.playerPlaceBlock.subscribe((e) => {
   let { block, dimension } = e;
 
-  if (block.typeId != 'minecraft:beacon') return;
+  if (block.getItemStack()?.typeId != 'minecraft:beacon') return;
 
   const pyramidBlocksVolume = detectBlocks(
     Vector3.subtract(block.location, new Vector3(1, 1, 1)),
@@ -20,11 +20,11 @@ world.afterEvents.playerPlaceBlock.subscribe((e) => {
   let pyramidBlocksUsed = 0;
   pyramidBlocksVolume.forEach((block) => {
     if (
-      block.typeId != 'minecraft:iron_block' &&
-      block.typeId != 'minecraft:gold_block' &&
-      block.typeId != 'minecraft:emerald_block' &&
-      block.typeId != 'minecraft:diamond_block' &&
-      block.typeId != 'minecraft:netherite_block'
+      block.getItemStack()?.typeId != 'minecraft:iron_block' &&
+      block.getItemStack()?.typeId != 'minecraft:gold_block' &&
+      block.getItemStack()?.typeId != 'minecraft:emerald_block' &&
+      block.getItemStack()?.typeId != 'minecraft:diamond_block' &&
+      block.getItemStack()?.typeId != 'minecraft:netherite_block'
     ) return;
 
     pyramidBlocksUsed += 1;

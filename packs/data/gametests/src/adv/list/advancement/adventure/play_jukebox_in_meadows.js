@@ -3,11 +3,15 @@ import { world } from "@minecraft/server";
 
 import { showAchievementToast } from "../../../toast";
 
-world.afterEvents.playerInteractWithBlock.subscribe((e) => {
-  let { block, player } = e;
+world.afterEvents.itemUseOn.subscribe((e) => {
+  let { itemStack, block, source } = e;
 
-  if (block.typeId != 'minecraft:jukebox' || player.hasTag('adv49')) return;
-  if (player.getDynamicProperty('adv:currentBiome') != 'meadow') return;
+  if (
+    block.getItemStack()?.typeId != 'minecraft:jukebox' ||
+    source.hasTag('adv49') ||
+    !itemStack?.typeId.startsWith('minecraft:music_disc')
+  ) return;
+  if (source.getDynamicProperty('adv:currentBiome') != 'meadow') return;
 
-  showAchievementToast(player, '049', 'task', '5505024', 'adv49');
+  showAchievementToast(source, '049', 'task', '5505024', 'adv49');
 })

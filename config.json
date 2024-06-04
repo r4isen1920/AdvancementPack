@@ -12,6 +12,10 @@
 			"gametests": {
 				"url": "github.com/Bedrock-OSS/regolith-filters",
 				"version": "1.5.3"
+			},
+			"packer": {
+				"url": "github.com/MCDevKit/regolith-library",
+				"version": "1.0.3"
 			}
 		},
 		"profiles": {
@@ -21,13 +25,11 @@
 					"target": "development"
 				},
 				"filters": [
-          {
+					{
 						"filter": "gametests",
 						"settings": {
 							"modules": [
-								"@minecraft/server@1.10.0-beta",
-								"@minecraft/server-ui@1.1.0",
-                "@minecraft/common@1.2.0"
+								"@minecraft/server@1.10.0"
 							],
 							"buildOptions": {
 								"entryPoints": [
@@ -42,8 +44,44 @@
 							"outfile": "BP/scripts/r4isen1920/advancementpack/main.js"
 						}
 					}
+				]
+			},
+      "ci": {
+        "export": {
+          "readOnly": false,
+          "target": "local"
+        },
+        "filters": [
+					{
+						"filter": "gametests",
+						"settings": {
+							"modules": [
+								"@minecraft/server@1.10.0"
+							],
+							"buildOptions": {
+								"dropLabels": [ "LOGGING" ],
+								"entryPoints": [
+									"data/gametests/src/index.ts"
+								],
+								"bundle": true,
+								"minify": true,
+								"format": "esm",
+								"target": "es2020"
+							},
+							"outdir": "BP/scripts/r4isen1920/advancementpack",
+							"outfile": "BP/scripts/r4isen1920/advancementpack/main.js"
+						}
+					},
+          {
+            "filter": "packer",
+            "settings": {
+              "worldPath": "../../world",
+              "worldName": "advancementpack-${git.tag ?? 'test'}",
+              "output": "advancementpack-${git.tag ?? 'test'}${git.tagCommit !== git.commit ? '-' + git.commit.substr(0, 6) : ''}.mcworld"
+            }
+          }
         ]
-			}
+      }
 		}
 	}
 }
