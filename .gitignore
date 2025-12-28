@@ -1,18 +1,13 @@
 /build
+/publish
 /.regolith
-_temp/
-.history/
-.history
 
 node_modules/
-scripts/
 
-.vscode/settings.json
-.vscode/extensions.json
-*.code-workspace
+*.txt
 *.py
 *.ase
-*.aseprite
+*.aseprj
 *.mcworld
 *.mcpack
 *.mcaddon
