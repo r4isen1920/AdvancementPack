@@ -1,29 +1,29 @@
 {
-  "format_version": 2,
-  "header": {
-    "description": "Adds Java advancements into your game. Created by r4isen1920.",
-    "name": "§7[v4.2]§r AdvancementPack [RP]",
-    "uuid": "bf56fc83-952e-4289-a65d-81a22f7cd975",
-    "pack_scope": "world",
-    "version": [ 4, 2, 0 ],
-    "min_engine_version": [ 1, 20, 80 ]
-  },
-  "modules": [
-    {
-      "description": "Behavior Pack",
-      "type": "resources",
-      "uuid": "7a9b040d-f449-4c7f-bfd8-6db3931479e4",
-      "version": [ 4, 2, 0 ]
-    }
-  ],
-  "dependencies": [
-    {
-      "uuid": "6724f956-7d1b-4c90-bc51-f4c86f41b083",
-      "version": [ 4, 2, 0 ]
-    }
-  ],
+	"format_version": 2,
+	"header": {
+		"description": "Adds Java advancements into your game. Created by r4isen1920.",
+		"name": "§7[v4.2]§r AdvancementPack [RP]",
+		"uuid": "bf56fc83-952e-4289-a65d-81a22f7cd975",
+		"pack_scope": "world",
+		"version": [4, 2, 0],
+		"min_engine_version": [1, 20, 80]
+	},
+	"modules": [
+		{
+			"description": "Behavior Pack",
+			"type": "resources",
+			"uuid": "7a9b040d-f449-4c7f-bfd8-6db3931479e4",
+			"version": [4, 2, 0]
+		}
+	],
+	"dependencies": [
+		{
+			"uuid": "6724f956-7d1b-4c90-bc51-f4c86f41b083",
+			"version": [4, 2, 0]
+		}
+	],
 	"metadata": {
-		"authors": [ "r4isen1920" ],
-    "product_type": "addon"
+		"authors": ["r4isen1920"],
+		"product_type": "addon"
 	}
 }

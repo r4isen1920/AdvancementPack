@@ -1,29 +1,40 @@
 {
-  "format_version": 2,
-  "header": {
-    "description": "Adds Java advancements into your game. Created by r4isen1920.",
-    "name": "§7[v4.2]§r AdvancementPack [BP]",
-    "uuid": "6724f956-7d1b-4c90-bc51-f4c86f41b083",
-    "pack_scope": "world",
-    "version": [ 4, 2, 0 ],
-    "min_engine_version": [ 1, 20, 80 ]
-  },
-  "modules": [
-    {
-      "description": "Behavior Pack",
-      "type": "data",
-      "uuid": "0b2c3b4e-154c-4f8a-a3f5-53596bbab6c2",
-      "version": [ 4, 2, 0 ]
-    }
-  ],
-  "dependencies": [
-    {
-      "uuid": "bf56fc83-952e-4289-a65d-81a22f7cd975",
-      "version": [ 4, 2, 0 ]
-    }
-  ],
+	"format_version": 2,
+	"header": {
+		"description": "Adds Java advancements into your game. Created by r4isen1920.",
+		"name": "§7[v4.2]§r AdvancementPack [BP]",
+		"uuid": "6724f956-7d1b-4c90-bc51-f4c86f41b083",
+		"pack_scope": "world",
+		"version": [4, 2, 0],
+		"min_engine_version": [1, 20, 80]
+	},
+	"modules": [
+		{
+			"description": "Behavior Pack",
+			"type": "data",
+			"uuid": "0b2c3b4e-154c-4f8a-a3f5-53596bbab6c2",
+			"version": [4, 2, 0]
+		},
+		{
+			"type": "script",
+			"uuid": "f6f78770-71c8-40a3-bc3f-5cc07393704a",
+			"version": [1, 0, 0],
+			"language": "javascript",
+			"entry": "scripts/main.js"
+		}
+	],
+	"dependencies": [
+		{
+			"uuid": "bf56fc83-952e-4289-a65d-81a22f7cd975",
+			"version": [4, 2, 0]
+		},
+		{
+			"module_name": "@minecraft/server",
+			"version": "1.19.0"
+		}
+	],
 	"metadata": {
-		"authors": [ "r4isen1920" ],
-    "product_type": "addon"
+		"authors": ["r4isen1920"],
+		"product_type": "addon"
 	}
 }
