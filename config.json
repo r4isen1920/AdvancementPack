@@ -1,7 +1,6 @@
 {
-	"$schema": "https://raw.githubusercontent.com/Bedrock-OSS/regolith-schemas/main/config/v1.2.json",
 	"author": "r4isen1920",
-	"name": "advancementpack",
+	"name": "AdvancementPack",
 	"packs": {
 		"behaviorPack": "./packs/BP",
 		"resourcePack": "./packs/RP"
@@ -9,16 +8,86 @@
 	"regolith": {
 		"dataPath": "./packs/data",
 		"filterDefinitions": {
-			"gametests": {
-				"url": "github.com/Bedrock-OSS/regolith-filters",
-				"version": "1.5.3"
+			"esbuild": {
+				"url": "github.com/ink0rr/regolith-filters",
+				"version": "0.3.1"
+			},
+			"jsonte": {
+				"url": "github.com/MCDevKit/regolith-library",
+				"version": "2.15.0"
 			},
 			"packer": {
 				"url": "github.com/MCDevKit/regolith-library",
 				"version": "1.0.3"
 			}
 		},
+		"formatVersion": "1.2.0",
 		"profiles": {
+			"base": {
+				"export": {
+					"readOnly": false,
+					"target": "development"
+				},
+				"filters": [
+					{
+						"arguments": [
+							"--cache-all",
+							"--include",
+							"data/jsonte/soundDurations.templ",
+							"data/jsonte"
+						],
+						"filter": "jsonte"
+					}
+				]
+			},
+			"build": {
+				"export": {
+					"readOnly": false,
+					"target": "local"
+				},
+				"filters": [
+					{
+						"profile": "build-dev"
+					},
+					{
+						"profile": "build-release"
+					}
+				]
+			},
+			"build-dev": {
+				"export": {
+					"readOnly": false,
+					"target": "local"
+				},
+				"filters": [
+					{
+						"profile": "default"
+					},
+					{
+						"filter": "packer",
+						"settings": {
+							"output": "WAILA-${git.tag ?? 'test'}-dev.mcaddon"
+						}
+					}
+				]
+			},
+			"build-release": {
+				"export": {
+					"readOnly": false,
+					"target": "local"
+				},
+				"filters": [
+					{
+						"profile": "release"
+					},
+					{
+						"filter": "packer",
+						"settings": {
+							"output": "WAILA-${git.tag ?? 'test'}.mcaddon"
+						}
+					}
+				]
+			},
 			"default": {
 				"export": {
 					"readOnly": false,
@@ -26,62 +95,59 @@
 				},
 				"filters": [
 					{
-						"filter": "gametests",
+						"profile": "base"
+					},
+					{
+						"profile": "scripts-dev"
+					}
+				]
+			},
+			"release": {
+				"export": {
+					"readOnly": false,
+					"target": "development"
+				},
+				"filters": [
+					{
+						"profile": "base"
+					},
+					{
+						"profile": "scripts"
+					}
+				]
+			},
+			"scripts": {
+				"export": {
+					"readOnly": false,
+					"target": "local"
+				},
+				"filters": [
+					{
+						"filter": "esbuild",
 						"settings": {
-							"modules": [
-								"@minecraft/server@1.10.0"
-							],
-							"buildOptions": {
-								"entryPoints": [
-									"data/gametests/src/index.ts"
-								],
-								"bundle": true,
-								"minify": false,
-								"format": "esm",
-								"target": "es2020"
-							},
-							"outdir": "BP/scripts/r4isen1920/advancementpack",
-							"outfile": "BP/scripts/r4isen1920/advancementpack/main.js"
+							"bundle": true,
+							"minify": true,
+							"dropLabels": ["DEBUG", "LOGGING"],
+							"entryPoints": ["data/scripts/main.ts"]
 						}
 					}
 				]
 			},
-      "ci": {
-        "export": {
-          "readOnly": false,
-          "target": "local"
-        },
-        "filters": [
+			"scripts-dev": {
+				"export": {
+					"readOnly": false,
+					"target": "local"
+				},
+				"filters": [
 					{
-						"filter": "gametests",
+						"filter": "esbuild",
 						"settings": {
-							"modules": [
-								"@minecraft/server@1.10.0"
-							],
-							"buildOptions": {
-								"dropLabels": [ "LOGGING" ],
-								"entryPoints": [
-									"data/gametests/src/index.ts"
-								],
-								"bundle": true,
-								"minify": true,
-								"format": "esm",
-								"target": "es2020"
-							},
-							"outdir": "BP/scripts/r4isen1920/advancementpack",
-							"outfile": "BP/scripts/r4isen1920/advancementpack/main.js"
+							"minify": false,
+							"entryPoints": ["data/scripts/main.ts"]
 						}
-					},
-          {
-            "filter": "packer",
-            "settings": {
-              "worldPath": "../../world",
-              "worldName": "advancementpack-${git.tag ?? 'test'}",
-              "output": "advancementpack-${git.tag ?? 'test'}${git.tagCommit !== git.commit ? '-' + git.commit.substr(0, 6) : ''}.mcworld"
-            }
-          }
-        ]
-      }
+					}
+				]
+			}
 		}
 	}
 }
