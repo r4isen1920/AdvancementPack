@@ -1,20 +1,32 @@
 {
-	"ui.toast.challenge_complete": {
-		"category": "ui",
-		"sounds": [
-			{
-				"name": "sounds/ui/toast/challenge_complete",
-				"load_on_low_memory": true
-			}
-		]
-	},
-	"ui.toast.woosh": {
-		"category": "ui",
-		"sounds": [
-			{
-				"name": "sounds/ui/toast/woosh",
-				"load_on_low_memory": false
-			}
-		]
+	"format_version": "1.21.60",
+	"sound_definitions": {
+		"ui.toast.challenge_complete": {
+			"category": "ui",
+			"sounds": [
+				{
+					"name": "sounds/ui/toast/challenge_complete",
+					"is3D": false
+				}
+			]
+		},
+		"ui.toast.in": {
+			"category": "ui",
+			"sounds": [
+				{
+					"name": "sounds/ui/toast/in",
+					"is3D": false
+				}
+			]
+		},
+		"ui.toast.out": {
+			"category": "ui",
+			"sounds": [
+				{
+					"name": "sounds/ui/toast/out",
+					"is3D": false
+				}
+			]
+		}
 	}
 }

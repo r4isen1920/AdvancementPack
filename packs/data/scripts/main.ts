@@ -1,17 +1,34 @@
-import "./adv/list/index.js";
+/**
+ *
+ * @author
+ * r4isen1920
+ * https://mcpedl.com/user/r4isen1920
+ *
+ * @license
+ * MIT License
+ *
+ */
 
-import "./adv/toast.js";
-import "./adv/screen.js";
-import "./adv/playerSetup.js";
-import "./adv/playerSpawn.js";
-import "./adv/projectilePing.js";
+import "./engine/Advancement";
+import "./engine/Criteria";
+import "./engine/EventBus";
+import "./engine/PlayerData";
+import "./engine/Registry";
+import "./engine/Screen";
+import "./engine/Toast";
 
-import "./adv/detectBiomes.js";
-import "./adv/detectBlocks.js";
-import "./adv/detectBreed.js";
-import "./adv/detectConsumed.js";
-import "./adv/detectCrossbowHit.js";
-import "./adv/detectItems.js";
-import "./adv/detectKilled.js";
-import "./adv/detectRide.js";
-// import "./adv/detectTamed.js";
+import "./detectors/BiomeDetector";
+import "./detectors/BreedDetector";
+import "./detectors/ConsumeDetector";
+import "./detectors/CrossbowHitDetector";
+import "./detectors/KillDetector";
+import "./detectors/RideDetector";
+import "./detectors/TameDetector";
+
+import "./handlers/PlayerHandler";
+import "./handlers/ProjectileHandler";
+
+import "./data";
+
+import { Logger, LogLevel } from "@bedrock-oss/bedrock-boost";
+Logger.setLevel(LogLevel.Debug);
