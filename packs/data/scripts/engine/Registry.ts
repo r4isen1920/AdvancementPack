@@ -289,4 +289,3 @@ export default class Registry {
     }
 }
 
-Registry.init();

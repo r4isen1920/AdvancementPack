@@ -227,5 +227,3 @@ export default class Toast {
         this.log.info("Toast system initialized");
     }
 }
-
-Toast.init();

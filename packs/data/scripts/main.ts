@@ -9,13 +9,29 @@
  *
  */
 
-import "./engine/Advancement";
-import "./engine/Criteria";
-import "./engine/EventBus";
-import "./engine/PlayerData";
-import "./engine/Registry";
-import "./engine/Screen";
-import "./engine/Toast";
+
+
+//* --- DEPENDENCIES --- *//
+
+import { Logger, LogLevel } from "@bedrock-oss/bedrock-boost";
+Logger.setLevel(LogLevel.Debug);
+
+//* ------ ENGINE ------ *//
+
+import EventBus from "./engine/EventBus";
+EventBus.install();
+
+import Registry from "./engine/Registry";
+Registry.init();
+
+import Screen from "./engine/Screen";
+Screen.init();
+
+import Toast from "./engine/Toast";
+Toast.init();
+
+
+//* ---- DETECTORS ----- *//
 
 import "./detectors/BiomeDetector";
 import "./detectors/BreedDetector";
@@ -25,10 +41,13 @@ import "./detectors/KillDetector";
 import "./detectors/RideDetector";
 import "./detectors/TameDetector";
 
+
+//* ----- HANDLERS ----- *//
+
 import "./handlers/PlayerHandler";
 import "./handlers/ProjectileHandler";
 
-import "./data";
 
-import { Logger, LogLevel } from "@bedrock-oss/bedrock-boost";
-Logger.setLevel(LogLevel.Debug);
+//* ------- DATA ------- *//
+
+import "./data";

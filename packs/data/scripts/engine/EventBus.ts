@@ -363,8 +363,6 @@ export default class EventBus {
     }
 }
 
-EventBus.install();
-
 
 
 //#region Decorators

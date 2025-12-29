@@ -205,5 +205,3 @@ export default class Screen {
         this.log.info("Screen system initialized");
     }
 }
-
-Screen.init();
