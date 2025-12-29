@@ -1,6 +1,6 @@
 import { Player, Entity } from "@minecraft/server";
 import { Logger } from "@bedrock-oss/bedrock-boost";
-import PlayerData from "../engine/PlayerData";
+import PlayerData, { TrackedCategory } from "../engine/PlayerData";
 import EventBus from "../engine/EventBus";
 
 /**
@@ -55,7 +55,7 @@ export class TameDetector {
         }
 
         const entityType = target.typeId.replace("minecraft:", "");
-        PlayerData.track(player, "tamed", entityType);
+        PlayerData.track(player, TrackedCategory.Tamed, entityType);
         PlayerData.setMisc(player, tamedKey, true);
     }
 }

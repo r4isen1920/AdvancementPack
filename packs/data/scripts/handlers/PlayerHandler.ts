@@ -1,8 +1,10 @@
-import { Player, ItemStack, world, GameMode } from "@minecraft/server";
+import { Player, ItemStack, world, GameMode, system, TicksPerSecond } from "@minecraft/server";
 import { Logger } from "@bedrock-oss/bedrock-boost";
 import EventBus from "../engine/EventBus";
-import PlayerData from "../engine/PlayerData";
+import PlayerData, { TrackedCategory } from "../engine/PlayerData";
 import Toast from "../engine/Toast";
+import { NAMESPACE } from "../utils/Namespace";
+import { OnWorldLoad } from "@bedrock-oss/stylish";
 
 
 
@@ -12,17 +14,21 @@ import Toast from "../engine/Toast";
  * Handles player spawn, initialization, and setup.
  */
 export default class PlayerHandler {
+    private static readonly playerList: Map<string, Player> = new Map();
     private static readonly log = Logger.getLogger("PlayerHandler");
 
 
 
-    //#region Initialization
+    //#region Init
 
     static init(): void {
         // Handle player spawns
         EventBus.on("playerSpawn", ({ player, initialSpawn }) => {
             if (initialSpawn) {
-                this.handleInitialSpawn(player);
+                system.runTimeout(() => {
+                    this.handleInitialSpawn(player);
+                }, TicksPerSecond);
+                this.playerList.set(player.id, player);
             }
         });
 
@@ -30,22 +36,43 @@ export default class PlayerHandler {
         world.beforeEvents.playerLeave.subscribe((event) => {
             PlayerData.save(event.player);
             PlayerData.unload(event.player);
+            this.playerList.delete(event.player.id);
         });
 
         // Handle game mode changes
         EventBus.on("scriptEvent", ({ id, message, sourceEntity }) => {
-            if (id !== "adv:init" || !sourceEntity) return;
+            if (id !== (NAMESPACE + ":init") || !sourceEntity) return;
             if (sourceEntity.typeId !== "minecraft:player") return;
             
+
             this.handleResetCommand(sourceEntity as Player, message);
         });
 
-        this.log.info("Player handler initialized");
+        EventBus.on("worldLoad", () => {
+            for (const player of world.getAllPlayers()) {
+                if (!this.playerList.has(player.id)) {
+                    this.playerList.set(player.id, player);
+                    this.handleInitialSpawn(player);
+                }
+            }
+        });
+
+        this.log.info(`Player handler initialized`);
+    }
+
+    static getOnlinePlayers(): Player[] {
+        const list = Array.from(this.playerList.values());
+        if (list.length === 0) {
+            for (const player of world.getPlayers()) {
+                this.playerList.set(player.id, player);
+            }
+        }
+        return list;
     }
 
 
 
-    //#region Spawn Handling
+    //#region Spawn
 
     private static handleInitialSpawn(player: Player): void {
         this.log.debug(`Initial spawn for ${player.name}`);
@@ -66,22 +93,13 @@ export default class PlayerHandler {
             Toast.push(player, "log_book");
             PlayerData.setMisc(player, "hasGivenLogBook", true);
         }
-
-        // Force survival mode if was in creative
-        if (player.getGameMode() === GameMode.Creative) {
-            try {
-                player.runCommand("gamemode s @s[m=c]");
-            } catch {
-                // Ignore command errors
-            }
-        }
     }
 
     private static giveLogBook(player: Player): void {
         try {
             const inventory = player.getComponent("inventory");
             if (inventory?.container) {
-                inventory.container.addItem(new ItemStack("adv:log_book", 1));
+                inventory.container.addItem(new ItemStack(NAMESPACE + ":log_book", 1));
             }
         } catch (e) {
             this.log.error(`Failed to give log book to ${player.name}: ${e}`);
@@ -90,7 +108,7 @@ export default class PlayerHandler {
 
 
 
-    //#region Reset Commands
+    //#region ResetCmds
 
     private static handleResetCommand(player: Player, command: string): void {
         switch (command) {
@@ -98,19 +116,19 @@ export default class PlayerHandler {
                 this.resetAll(player);
                 break;
             case "biome":
-                PlayerData.clearCategory(player, "biome");
+                PlayerData.clearCategory(player, TrackedCategory.Biome);
                 break;
             case "breed":
-                PlayerData.clearCategory(player, "breed");
+                PlayerData.clearCategory(player, TrackedCategory.Breed);
                 break;
             case "consumed":
-                PlayerData.clearCategory(player, "consumed");
+                PlayerData.clearCategory(player, TrackedCategory.Consumed);
                 break;
             case "killed":
-                PlayerData.clearCategory(player, "killed");
+                PlayerData.clearCategory(player, TrackedCategory.Killed);
                 break;
             case "tamed":
-                PlayerData.clearCategory(player, "tamed");
+                PlayerData.clearCategory(player, TrackedCategory.Tamed);
                 this.clearTamedEntities(player);
                 break;
         }

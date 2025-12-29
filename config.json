@@ -125,7 +125,6 @@
 					{
 						"filter": "esbuild",
 						"settings": {
-							"bundle": true,
 							"minify": true,
 							"dropLabels": ["DEBUG", "LOGGING"],
 							"entryPoints": ["data/scripts/main.ts"]

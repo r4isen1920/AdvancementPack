@@ -2,7 +2,7 @@
 	"format_version": "1.18.10",
 	"minecraft:entity": {
 		"description": {
-			"identifier": "adv:dialogue_handler",
+			"identifier": "r4isen1920_adv:dialogue_handler",
 
 			"is_summonable": true,
 
@@ -15,7 +15,7 @@
 		},
 
 		"component_groups": {
-			"adv:instant_despawn": {
+			"r4isen1920_adv:instant_despawn": {
 				"minecraft:instant_despawn": {}
 			}
 		},
@@ -71,7 +71,7 @@
 						"operator": ">",
 						"value": 48
 					},
-					"event": "adv:instant_despawn",
+					"event": "r4isen1920_adv:instant_despawn",
 					"target": "self"
 				}
 			},
@@ -79,9 +79,9 @@
 		},
 
 		"events": {
-			"adv:instant_despawn": {
+			"r4isen1920_adv:instant_despawn": {
 				"add": {
-					"component_groups": ["adv:instant_despawn"]
+					"component_groups": ["r4isen1920_adv:instant_despawn"]
 				}
 			}
 		}

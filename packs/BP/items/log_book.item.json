@@ -2,7 +2,7 @@
 	"format_version": "1.20.50",
 	"minecraft:item": {
 		"description": {
-			"identifier": "adv:log_book",
+			"identifier": "r4isen1920_adv:log_book",
 			"menu_category": {
 				"category": "items"
 			}

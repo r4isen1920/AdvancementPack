@@ -1,6 +1,6 @@
 import { Entity, EntityInitializationCause } from "@minecraft/server";
 import { Logger } from "@bedrock-oss/bedrock-boost";
-import PlayerData from "../engine/PlayerData";
+import PlayerData, { TrackedCategory } from "../engine/PlayerData";
 import EventBus from "../engine/EventBus";
 
 /**
@@ -30,7 +30,7 @@ export class BreedDetector {
         });
 
         for (const player of players) {
-            PlayerData.track(player, "breed", entityType);
+            PlayerData.track(player, TrackedCategory.Breed, entityType);
         }
     }
 }

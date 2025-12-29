@@ -4,6 +4,7 @@ import Registry from "./Registry";
 import { NAMESPACE } from "../utils/Namespace";
 import Toast from "./Toast";
 import { Logger } from "@bedrock-oss/bedrock-boost";
+import PlayerData, { TrackedCategory } from "./PlayerData";
 
 
 
@@ -101,6 +102,8 @@ export default class Advancement {
     readonly rewards: AdvancementRewards;
     /** Parent advancement ID */
     readonly parent?: string;
+    /** Whether this advancement requires its parent to be unlocked first */
+    readonly requiresParent: boolean;
 
 
 
@@ -112,6 +115,7 @@ export default class Advancement {
         this.criteria = config.criteria ?? [];
         this.rewards = config.rewards ?? {};
         this.parent = config.parent;
+        this.requiresParent = false;
     }
 
 
@@ -156,8 +160,8 @@ export default class Advancement {
      * Checks if parent requirements are met.
      */
     checkParent(player: Player): boolean {
-        if (!this.parent) return true;
-        return Registry.isUnlocked(this.parent, player);
+        if (!this.parent || !this.requiresParent) return true;
+        return PlayerData.getTracked(player, TrackedCategory.UnlockedAdvancement).has(this.parent);
     }
 
     /**
@@ -176,7 +180,7 @@ export default class Advancement {
      * @returns true if newly unlocked, false if already unlocked
      */
     unlock(player: Player): boolean {
-        if (Registry.isUnlocked(this.id, player)) {
+        if (PlayerData.getTracked(player, TrackedCategory.UnlockedAdvancement).has(this.id)) {
             return false;
         }
 
@@ -187,7 +191,7 @@ export default class Advancement {
 
         // Store unlock state
         player.setDynamicProperty(`${NAMESPACE}:adv.${this.id}`, true);
-        Registry.markUnlocked(this.id, player);
+        PlayerData.track(player, TrackedCategory.UnlockedAdvancement, this.id);
 
         // Grant rewards
         this.grantRewards(player);
@@ -203,12 +207,12 @@ export default class Advancement {
      * Revokes this advancement from a player.
      */
     revoke(player: Player): boolean {
-        if (!Registry.isUnlocked(this.id, player)) {
+        if (!PlayerData.getTracked(player, TrackedCategory.UnlockedAdvancement).has(this.id)) {
             return false;
         }
 
         player.setDynamicProperty(`${NAMESPACE}:adv.${this.id}`, undefined);
-        Registry.markLocked(this.id, player);
+        PlayerData.untrack(player, TrackedCategory.UnlockedAdvancement, this.id);
 
         Advancement.log.debug(`Revoked ${this.id} from ${player.name}`);
         return true;

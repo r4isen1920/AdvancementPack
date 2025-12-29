@@ -2,6 +2,7 @@ import { Player, RawMessage, system, world } from "@minecraft/server";
 import Advancement, { AdvancementType } from "./Advancement";
 import { Logger } from "@bedrock-oss/bedrock-boost";
 import EventBus from "./EventBus";
+import PlayerHandler from "../handlers/PlayerHandler";
 
 
 
@@ -58,12 +59,10 @@ export default class Toast {
      * Queues an advancement toast for a player.
      */
     static push(player: Player, advancement: Advancement): void;
-    
     /**
      * Queues a game tip toast for a player.
      */
     static push(player: Player, tipId: string): void;
-    
     static push(player: Player, data: Advancement | string): void {
         if (!player.isValid) return;
 
@@ -130,12 +129,14 @@ export default class Toast {
         // Advancement toast
         const typeInfo = TOAST_TYPE_MAP[data.type];
         const slideshow = data.display.slideshow ? "1" : "0";
+
+        const ref = data.id.slice(3).padStart(3, "0");
         
         return { rawtext: [
             { text: "_r4ui:toast_0.header." },
             { text: typeInfo[0] },
             { text: ".body." },
-            { text: data.display.name },
+            { text: ref },
             { text: `.slideshow_${slideshow}.` },
             { text: data.display.icon },
         ]};
@@ -147,6 +148,8 @@ export default class Toast {
     private static announceInChat(player: Player, advancement: Advancement): void {
         const typeInfo = TOAST_TYPE_MAP[advancement.type];
         
+        const ref = advancement.id.slice(3).padStart(3, "0");
+
         const message: RawMessage = {
             rawtext: [
                 {
@@ -154,7 +157,7 @@ export default class Toast {
                     with: {
                         rawtext: [
                             { text: player.name },
-                            { translate: `r4ui.toast.body.${advancement.display.name}` },
+                            { translate: `r4ui.toast.body.${ref}` },
                         ]
                     }
                 }
@@ -219,7 +222,7 @@ export default class Toast {
      */
     static init(): void {
         EventBus.onTick(() => {
-            for (const player of world.getAllPlayers()) {
+            for (const player of PlayerHandler.getOnlinePlayers()) {
                 this.processPlayer(player);
             }
         }, 1);

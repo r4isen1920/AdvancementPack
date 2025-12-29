@@ -1,6 +1,6 @@
 import { Player } from "@minecraft/server";
 import { Logger } from "@bedrock-oss/bedrock-boost";
-import PlayerData from "../engine/PlayerData";
+import PlayerData, { TrackedCategory } from "../engine/PlayerData";
 import EventBus from "../engine/EventBus";
 
 /**
@@ -21,7 +21,7 @@ export class ConsumeDetector {
         if (!itemTypeId.startsWith("minecraft:")) return;
 
         const itemName = itemTypeId.replace("minecraft:", "");
-        PlayerData.track(player, "consumed", itemName);
+        PlayerData.track(player, TrackedCategory.Consumed, itemName);
     }
 }
 

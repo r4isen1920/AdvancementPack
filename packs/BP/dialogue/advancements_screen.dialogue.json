@@ -19,42 +19,42 @@
 						"name": "tab.story",
 						"commands": [
 							"/tag @initiator add has_screen_opened",
-							"/execute as @initiator run scriptevent adv:open_screen story"
+							"/execute as @initiator run scriptevent r4isen1920_adv:open_screen story"
 						]
 					},
 					{
 						"name": "tab.adventure",
 						"commands": [
 							"/tag @initiator add has_screen_opened",
-							"/execute as @initiator run scriptevent adv:open_screen adventure"
+							"/execute as @initiator run scriptevent r4isen1920_adv:open_screen adventure"
 						]
 					},
 					{
 						"name": "tab.nether",
 						"commands": [
 							"/tag @initiator add has_screen_opened",
-							"/execute as @initiator run scriptevent adv:open_screen nether"
+							"/execute as @initiator run scriptevent r4isen1920_adv:open_screen nether"
 						]
 					},
 					{
 						"name": "tab.the_end",
 						"commands": [
 							"/tag @initiator add has_screen_opened",
-							"/execute as @initiator run scriptevent adv:open_screen end"
+							"/execute as @initiator run scriptevent r4isen1920_adv:open_screen end"
 						]
 					},
 					{
 						"name": "tab.husbandry",
 						"commands": [
 							"/tag @initiator add has_screen_opened",
-							"/execute as @initiator run scriptevent adv:open_screen husbandry"
+							"/execute as @initiator run scriptevent r4isen1920_adv:open_screen husbandry"
 						]
 					},
 					{
 						"name": "tab.legacy",
 						"commands": [
 							"/tag @initiator add has_screen_opened",
-							"/execute as @initiator run scriptevent adv:open_screen achievements"
+							"/execute as @initiator run scriptevent r4isen1920_adv:open_screen achievements"
 						]
 					}
 				],
@@ -72,42 +72,42 @@
 						"name": "tab.story",
 						"commands": [
 							"/tag @initiator add has_screen_opened",
-							"/execute as @initiator run scriptevent adv:open_screen story"
+							"/execute as @initiator run scriptevent r4isen1920_adv:open_screen story"
 						]
 					},
 					{
 						"name": "tab.adventure",
 						"commands": [
 							"/tag @initiator add has_screen_opened",
-							"/execute as @initiator run scriptevent adv:open_screen adventure"
+							"/execute as @initiator run scriptevent r4isen1920_adv:open_screen adventure"
 						]
 					},
 					{
 						"name": "tab.nether",
 						"commands": [
 							"/tag @initiator add has_screen_opened",
-							"/execute as @initiator run scriptevent adv:open_screen nether"
+							"/execute as @initiator run scriptevent r4isen1920_adv:open_screen nether"
 						]
 					},
 					{
 						"name": "tab.the_end",
 						"commands": [
 							"/tag @initiator add has_screen_opened",
-							"/execute as @initiator run scriptevent adv:open_screen end"
+							"/execute as @initiator run scriptevent r4isen1920_adv:open_screen end"
 						]
 					},
 					{
 						"name": "tab.husbandry",
 						"commands": [
 							"/tag @initiator add has_screen_opened",
-							"/execute as @initiator run scriptevent adv:open_screen husbandry"
+							"/execute as @initiator run scriptevent r4isen1920_adv:open_screen husbandry"
 						]
 					},
 					{
 						"name": "tab.legacy",
 						"commands": [
 							"/tag @initiator add has_screen_opened",
-							"/execute as @initiator run scriptevent adv:open_screen achievements"
+							"/execute as @initiator run scriptevent r4isen1920_adv:open_screen achievements"
 						]
 					}
 				],
@@ -125,42 +125,42 @@
 						"name": "tab.story",
 						"commands": [
 							"/tag @initiator add has_screen_opened",
-							"/execute as @initiator run scriptevent adv:open_screen story"
+							"/execute as @initiator run scriptevent r4isen1920_adv:open_screen story"
 						]
 					},
 					{
 						"name": "tab.adventure",
 						"commands": [
 							"/tag @initiator add has_screen_opened",
-							"/execute as @initiator run scriptevent adv:open_screen adventure"
+							"/execute as @initiator run scriptevent r4isen1920_adv:open_screen adventure"
 						]
 					},
 					{
 						"name": "tab.nether",
 						"commands": [
 							"/tag @initiator add has_screen_opened",
-							"/execute as @initiator run scriptevent adv:open_screen nether"
+							"/execute as @initiator run scriptevent r4isen1920_adv:open_screen nether"
 						]
 					},
 					{
 						"name": "tab.the_end",
 						"commands": [
 							"/tag @initiator add has_screen_opened",
-							"/execute as @initiator run scriptevent adv:open_screen end"
+							"/execute as @initiator run scriptevent r4isen1920_adv:open_screen end"
 						]
 					},
 					{
 						"name": "tab.husbandry",
 						"commands": [
 							"/tag @initiator add has_screen_opened",
-							"/execute as @initiator run scriptevent adv:open_screen husbandry"
+							"/execute as @initiator run scriptevent r4isen1920_adv:open_screen husbandry"
 						]
 					},
 					{
 						"name": "tab.legacy",
 						"commands": [
 							"/tag @initiator add has_screen_opened",
-							"/execute as @initiator run scriptevent adv:open_screen achievements"
+							"/execute as @initiator run scriptevent r4isen1920_adv:open_screen achievements"
 						]
 					}
 				],
@@ -178,42 +178,42 @@
 						"name": "tab.story",
 						"commands": [
 							"/tag @initiator add has_screen_opened",
-							"/execute as @initiator run scriptevent adv:open_screen story"
+							"/execute as @initiator run scriptevent r4isen1920_adv:open_screen story"
 						]
 					},
 					{
 						"name": "tab.adventure",
 						"commands": [
 							"/tag @initiator add has_screen_opened",
-							"/execute as @initiator run scriptevent adv:open_screen adventure"
+							"/execute as @initiator run scriptevent r4isen1920_adv:open_screen adventure"
 						]
 					},
 					{
 						"name": "tab.nether",
 						"commands": [
 							"/tag @initiator add has_screen_opened",
-							"/execute as @initiator run scriptevent adv:open_screen nether"
+							"/execute as @initiator run scriptevent r4isen1920_adv:open_screen nether"
 						]
 					},
 					{
 						"name": "tab.the_end",
 						"commands": [
 							"/tag @initiator add has_screen_opened",
-							"/execute as @initiator run scriptevent adv:open_screen end"
+							"/execute as @initiator run scriptevent r4isen1920_adv:open_screen end"
 						]
 					},
 					{
 						"name": "tab.husbandry",
 						"commands": [
 							"/tag @initiator add has_screen_opened",
-							"/execute as @initiator run scriptevent adv:open_screen husbandry"
+							"/execute as @initiator run scriptevent r4isen1920_adv:open_screen husbandry"
 						]
 					},
 					{
 						"name": "tab.legacy",
 						"commands": [
 							"/tag @initiator add has_screen_opened",
-							"/execute as @initiator run scriptevent adv:open_screen achievements"
+							"/execute as @initiator run scriptevent r4isen1920_adv:open_screen achievements"
 						]
 					}
 				],
@@ -231,42 +231,42 @@
 						"name": "tab.story",
 						"commands": [
 							"/tag @initiator add has_screen_opened",
-							"/execute as @initiator run scriptevent adv:open_screen story"
+							"/execute as @initiator run scriptevent r4isen1920_adv:open_screen story"
 						]
 					},
 					{
 						"name": "tab.adventure",
 						"commands": [
 							"/tag @initiator add has_screen_opened",
-							"/execute as @initiator run scriptevent adv:open_screen adventure"
+							"/execute as @initiator run scriptevent r4isen1920_adv:open_screen adventure"
 						]
 					},
 					{
 						"name": "tab.nether",
 						"commands": [
 							"/tag @initiator add has_screen_opened",
-							"/execute as @initiator run scriptevent adv:open_screen nether"
+							"/execute as @initiator run scriptevent r4isen1920_adv:open_screen nether"
 						]
 					},
 					{
 						"name": "tab.the_end",
 						"commands": [
 							"/tag @initiator add has_screen_opened",
-							"/execute as @initiator run scriptevent adv:open_screen end"
+							"/execute as @initiator run scriptevent r4isen1920_adv:open_screen end"
 						]
 					},
 					{
 						"name": "tab.husbandry",
 						"commands": [
 							"/tag @initiator add has_screen_opened",
-							"/execute as @initiator run scriptevent adv:open_screen husbandry"
+							"/execute as @initiator run scriptevent r4isen1920_adv:open_screen husbandry"
 						]
 					},
 					{
 						"name": "tab.legacy",
 						"commands": [
 							"/tag @initiator add has_screen_opened",
-							"/execute as @initiator run scriptevent adv:open_screen achievements"
+							"/execute as @initiator run scriptevent r4isen1920_adv:open_screen achievements"
 						]
 					}
 				],
@@ -284,42 +284,42 @@
 						"name": "tab.story",
 						"commands": [
 							"/tag @initiator add has_screen_opened",
-							"/execute as @initiator run scriptevent adv:open_screen story"
+							"/execute as @initiator run scriptevent r4isen1920_adv:open_screen story"
 						]
 					},
 					{
 						"name": "tab.adventure",
 						"commands": [
 							"/tag @initiator add has_screen_opened",
-							"/execute as @initiator run scriptevent adv:open_screen adventure"
+							"/execute as @initiator run scriptevent r4isen1920_adv:open_screen adventure"
 						]
 					},
 					{
 						"name": "tab.nether",
 						"commands": [
 							"/tag @initiator add has_screen_opened",
-							"/execute as @initiator run scriptevent adv:open_screen nether"
+							"/execute as @initiator run scriptevent r4isen1920_adv:open_screen nether"
 						]
 					},
 					{
 						"name": "tab.the_end",
 						"commands": [
 							"/tag @initiator add has_screen_opened",
-							"/execute as @initiator run scriptevent adv:open_screen end"
+							"/execute as @initiator run scriptevent r4isen1920_adv:open_screen end"
 						]
 					},
 					{
 						"name": "tab.husbandry",
 						"commands": [
 							"/tag @initiator add has_screen_opened",
-							"/execute as @initiator run scriptevent adv:open_screen husbandry"
+							"/execute as @initiator run scriptevent r4isen1920_adv:open_screen husbandry"
 						]
 					},
 					{
 						"name": "tab.legacy",
 						"commands": [
 							"/tag @initiator add has_screen_opened",
-							"/execute as @initiator run scriptevent adv:open_screen achievements"
+							"/execute as @initiator run scriptevent r4isen1920_adv:open_screen achievements"
 						]
 					}
 				],

@@ -21,6 +21,7 @@ import {
     PlayerInteractWithBlockAfterEvent,
     ScriptEventCommandMessageAfterEvent,
     PlayerDimensionChangeAfterEvent,
+    WorldLoadAfterEvent,
 } from "@minecraft/server";
 import { Logger } from "@bedrock-oss/bedrock-boost";
 
@@ -46,6 +47,7 @@ export type EventType =
     | "playerInteractWithEntity"
     | "playerInteractWithBlock"
     | "scriptEvent"
+    | "worldLoad"
     | "tick";
 
 /** Event data passed to handlers */
@@ -66,6 +68,7 @@ export interface EventData {
     playerInteractWithEntity: { player: Player; target: Entity; itemStack?: ItemStack };
     playerInteractWithBlock: { player: Player; block: Block; itemStack?: ItemStack };
     scriptEvent: { id: string; message: string; sourceEntity?: Entity };
+    worldLoad: {};
     tick: { currentTick: number };
 }
 
@@ -319,6 +322,11 @@ export default class EventBus {
                 block: ev.block,
                 itemStack: ev.itemStack,
             });
+        });
+
+        // World load
+        world.afterEvents.worldLoad.subscribe((ev: WorldLoadAfterEvent) => {
+            this.emit("worldLoad", ev);
         });
     }
 

@@ -1,6 +1,6 @@
 import { Player, Entity } from "@minecraft/server";
 import { Logger } from "@bedrock-oss/bedrock-boost";
-import PlayerData from "../engine/PlayerData";
+import PlayerData, { TrackedCategory } from "../engine/PlayerData";
 import EventBus from "../engine/EventBus";
 
 /**
@@ -57,7 +57,7 @@ export class KillDetector {
         
         if (!isMonster && !isCow && !KILLABLE_MOBS.has(mobName)) return;
 
-        PlayerData.track(player, "killed", mobName);
+        PlayerData.track(player, TrackedCategory.Killed, mobName);
     }
 
     private static handleBossHurt(player: Player, entity: Entity, damage: number): void {
@@ -70,7 +70,7 @@ export class KillDetector {
         // If damage would kill or health is very low
         if (healthPercent < 3 || damage >= currentHealth) {
             const mobName = entity.typeId.replace("minecraft:", "");
-            PlayerData.track(player, "killed", mobName);
+            PlayerData.track(player, TrackedCategory.Killed, mobName);
             
             try {
                 entity.kill();

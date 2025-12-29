@@ -1,7 +1,8 @@
 import { Player, world } from "@minecraft/server";
 import { Logger } from "@bedrock-oss/bedrock-boost";
-import PlayerData from "../engine/PlayerData";
+import PlayerData, { TrackedCategory } from "../engine/PlayerData";
 import EventBus from "../engine/EventBus";
+import PlayerHandler from "../handlers/PlayerHandler";
 
 /**
  * Handles riding state tracking.
@@ -12,7 +13,7 @@ export class RideDetector {
 
     static init(): void {
         EventBus.onTick(() => {
-            for (const player of world.getAllPlayers()) {
+            for (const player of PlayerHandler.getOnlinePlayers()) {
                 this.checkRiding(player);
             }
         }, this.CHECK_INTERVAL);
@@ -32,7 +33,7 @@ export class RideDetector {
         const ridingEntity = riding.entityRidingOn;
         const entityType = ridingEntity.typeId.replace("minecraft:", "");
         
-        PlayerData.track(player, "riding", entityType);
+        PlayerData.track(player, TrackedCategory.Riding, entityType);
         PlayerData.setMisc(player, "currentlyRiding", entityType);
     }
 }

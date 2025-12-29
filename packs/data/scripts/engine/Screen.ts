@@ -4,7 +4,8 @@ import Registry from "./Registry";
 import Toast from "./Toast";
 import { AdvancementTab } from "./Advancement";
 import EventBus from "./EventBus";
-import PlayerData from "./PlayerData";
+import PlayerData, { TrackedCategory } from "./PlayerData";
+import { NAMESPACE } from "../utils/Namespace";
 
 
 
@@ -70,7 +71,7 @@ export default class Screen {
      */
     static ensureDialogueHandler(player: Player): void {
         const handlers = player.dimension.getEntities({
-            type: "adv:dialogue_handler",
+            type: NAMESPACE + ":dialogue_handler",
             location: player.location,
             maxDistance: 48,
             closest: 1,
@@ -79,7 +80,7 @@ export default class Screen {
         if (handlers.length === 0) {
             try {
                 player.dimension.spawnEntity(
-                    "adv:dialogue_handler",
+                    NAMESPACE + ":dialogue_handler",
                     Vec3.from(player.location).add(0, 8, 0)
                 );
             } catch (e) {
@@ -108,7 +109,11 @@ export default class Screen {
         this.ensureDialogueHandler(player);
 
         // Get unlocked advancements for this tab
-        const unlocked = Registry.getUnlockedInTab(player, config.tab);
+        const advInTab = Array.from(Registry.getByTab(config.tab));
+        const unlocked = advInTab.filter(adv => {
+            const playerState = PlayerData.getTracked(player, TrackedCategory.UnlockedAdvancement);
+            return playerState.has(adv.id);
+        });
         
         // Build the parse string
         const parseStrSuffix = ".1b;";
@@ -120,7 +125,7 @@ export default class Screen {
         // Open dialogue and set title
         try {
             player.runCommand(
-                `dialogue open @e[type=adv:dialogue_handler,c=1] @s _r4ui:${screenName}_tab`
+                `dialogue open @e[type=${NAMESPACE}:dialogue_handler,c=1] @s _r4ui:${screenName}_tab`
             );
             player.onScreenDisplay.setTitle(parseStr);
         } catch (e) {
@@ -134,7 +139,7 @@ export default class Screen {
     private static openEmpty(player: Player): void {
         try {
             player.runCommand(
-                `dialogue open @e[type=adv:dialogue_handler,c=1] @s _r4ui:empty_tab`
+                `dialogue open @e[type=${NAMESPACE}:dialogue_handler,c=1] @s _r4ui:empty_tab`
             );
             player.onScreenDisplay.setTitle("_r4ui:empty:");
         } catch (e) {
@@ -182,14 +187,14 @@ export default class Screen {
     static init(): void {
         // Item use handler
         EventBus.on("itemUse", ({ player, itemStack }) => {
-            if (itemStack.typeId === "adv:log_book") {
+            if (itemStack.typeId === NAMESPACE + ":log_book") {
                 Screen.handleLogBookUse(player);
             }
         });
 
         // Script event handler for opening screens
         EventBus.on("scriptEvent", ({ id, message, sourceEntity }) => {
-            if (id !== "adv:open_screen") return;
+            if (id !== NAMESPACE + ":open_screen") return;
             if (sourceEntity?.typeId !== "minecraft:player") return;
 
             const player = sourceEntity as Player;

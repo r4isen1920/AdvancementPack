@@ -1,6 +1,6 @@
 import { Player, Entity } from "@minecraft/server";
 import { Logger } from "@bedrock-oss/bedrock-boost";
-import PlayerData from "../engine/PlayerData";
+import PlayerData, { TrackedCategory } from "../engine/PlayerData";
 import EventBus from "../engine/EventBus";
 
 /**
@@ -29,7 +29,7 @@ export class CrossbowHitDetector {
         if (heldItem?.typeId !== "minecraft:crossbow") return;
 
         const entityType = entity.typeId.replace("minecraft:", "");
-        PlayerData.track(player, "crossbow_hit", entityType);
+        PlayerData.track(player, TrackedCategory.CrossbowHit, entityType);
     }
 }
 
